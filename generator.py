@@ -1,7 +1,8 @@
 import random
+import re
 
-name="歪歪"
-event="不回消息"
+name="yyy"
+event="拿你口红烧菜"
 
 nickname=[
     "宝贝name，",
@@ -10,15 +11,12 @@ nickname=[
     "我最爱的name，",
     "name小可爱，",
     "name小仙女，",
-    "name小甜心"
+    "name小甜心，"
 ]
 
 apology=[
-    "我知道错了。",
-    "这次是我不对。",
-    "原谅我好吗？",
-    "你怎么可爱一定会原谅我对吧？",
-    "我已经深刻反省我的错误了。" ,
+    "event的事是我错了。",
+    "我已经为event深刻反省了。" ,
     "还在为event的事生气吗？",
     "event的事的确是我不对。",
     "我千不该万不该，最不该event。",
@@ -42,7 +40,7 @@ apology_text=[
     "你是知道我一直很用心的爱你，我不想欠你有太多，如果有一天我真的走，你一定要原谅我。",
     "真的好想你呀，想你甜甜的笑，柔柔的话，和你美丽的脸！喂？喂？别再生气了吧！我爱你！",
     "对不起，我为我的粗鲁深表歉意。因为真的太想见你，心里从来没有那么在乎。原谅我好吗？",
-    "会用行动来说明一切，不会再让你感到伤心与失望，在这我真诚的请你原谅，永远爱你的人！",    
+    "会用行动来说明一切，不会再让你感到伤心与失望，在这我真诚的请你原谅，永远爱你的人！",
     "什么样的话语都代替不了我愧疚的心情，站在你的角度去想，更叫我伤心，我该怎样地对你呢？",
     "也许我们之间有些误会，那你也不用不理我啊！就算我错了好了，我借此对你说一声对不起。",
     "我会用行动来说明一切，不会再让你感到伤心与失望，漫漫长路希望与之协手共进，永远爱你的人。",
@@ -53,10 +51,10 @@ apology_text=[
     "如果你生气就直接骂我吧，千万不要对着我掉眼泪，那样的话我的心都会碎成千万片。请你原谅我！",
     "很吊唁一块儿渡过的时间，惦念你的笑！惦念你的好！只怪本身不懂爱惜！给个机遇让咱们回到畴前。",
     "无心让我伤害了你。我的心里也不好受！希望你能理解，可以给我一个改过的机会！重新开始接受我！",
-    "今天发生的故事仅仅是个意外，心存太多太多的悔意，一个信息送去我的保歉。亲爱的因为我太在乎你。",    
+    "今天发生的故事仅仅是个意外，心存太多太多的悔意，一个信息送去我的保歉。亲爱的因为我太在乎你。",
     "难道你不能容忍一个爱你的人犯的一次错误吗如果你可原谅我，我将用我的实际行动来弥补我的过失！",
     "唱着伤心的歌曲，看着心爱的女孩。心是为你伤的，歌是为你唱的。我只是想要你幸福快乐，对不起！",
-    "也许是我不懂的事太多太多，也许是我的错，也许一切已经慢慢的错过，可我依然期待你的谅解和呵护！",    
+    "也许是我不懂的事太多太多，也许是我的错，也许一切已经慢慢的错过，可我依然期待你的谅解和呵护！",
     "如果由于我对你的缅怀而搅扰了你，那末什么也取代不了我惭愧和伤感的心，对不起！我该怎样对你呢？",
     "在黎明前，我们都渴望见到曙光；却也同样害怕被烈阳所伤！谈谈吧！愿能携手伴曙光；不愿两伤对烈阳！",
     "老婆，我昨晚也几乎一晚没睡，除了反省自己的过错，我还要用行动表示，抓紧时间赶制温暖牌，原谅我吧！",
@@ -73,24 +71,23 @@ NICKNAME_LEN=len(nickname)
 APOLOGY=len(apology)
 APOLOGY_TEXT=len(apology_text)
 
-
 def main():
     bullshit=str()
-    bullshit+=nickname[random.randInt(0,NICKNAME_LEN-1)]
-    bullshit+=apology[random.randInt(0,APOLOGY-1)]
-    greeted=True
+    bullshit+=nickname[random.randint(0,NICKNAME_LEN-1)]
+    bullshit+=apology[random.randint(0,APOLOGY-1)]
     while(len(bullshit)<=1000):
-        randNum=random.randInt(0,3)
-        if randNum%3==0:
-            if greeted==True:
-                continue
-            else:
-                bullshit+=nickname[random.randInt(0,NICKNAME_LEN-1)]
-                bullshit+=apology[random.randInt(0,APOLOGY-1)]
+        randNum=random.randint(0,15)
+        if randNum%4==0:
+            bullshit+=nickname[random.randint(0,NICKNAME_LEN-1)]
+            bullshit+=apology[random.randint(0,APOLOGY-1)]
         else:
-            greeted=False
-            bullshit+=apology_text[random.random(0,APOLOGY_TEXT)]
-    print(bullshit)
+            bullshit+=apology_text[random.randint(0,APOLOGY_TEXT-1)]
+    bullshit=bullshit.replace("name",name)
+    bullshit=bullshit.replace("event",event)
 
+    pattern=re.compile('.{50}')
+    bullshit='\n'.join([bullshit[i:i+50] for i in range(0,len(bullshit),50)])
+    print("关于{}致最亲爱的{}的道歉信".format(event,name))
+    print(bullshit)
 
 main()
