@@ -84,8 +84,7 @@ def main():
             bullshit+=apology_text[random.randint(0,APOLOGY_TEXT-1)]
     bullshit=bullshit.replace("name",name)
     bullshit=bullshit.replace("event",event)
-
-    pattern=re.compile('.{50}')
+    
     bullshit='\n'.join([bullshit[i:i+50] for i in range(0,len(bullshit),50)])
     print("关于{}致最亲爱的{}的道歉信".format(event,name))
     print(bullshit)
