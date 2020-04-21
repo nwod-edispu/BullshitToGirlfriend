@@ -1,10 +1,10 @@
 import random
 import re
 
-name="yyy"
-event="拿你口红烧菜"
+name = "波多野结衣"
+event = "弄坏口红"
 
-nickname=[
+nickname = [
     "宝贝name，",
     "亲爱的name，",
     "可爱的name，",
@@ -14,9 +14,9 @@ nickname=[
     "name小甜心，"
 ]
 
-apology=[
+apology = [
     "event的事是我错了。",
-    "我已经为event深刻反省了。" ,
+    "我已经为event深刻反省了。",
     "还在为event的事生气吗？",
     "event的事的确是我不对。",
     "我千不该万不该，最不该event。",
@@ -25,7 +25,7 @@ apology=[
     "我为event的事诚挚的道歉。"
 ]
 
-apology_text=[
+apology_text = [
     "我知道你很生气。而且你每次生气我都好害怕。理解我，好么？原谅我，好么？",
     "气球太饱会爆，固然你的皮厚，可是也不能撑过久啊，放点气吧，哪怕是从上面。",
     "宝贝抱歉，刚刚我太冲动了，无意中伤到了你，请你原谅！这样的我你还爱我吗？",
@@ -67,26 +67,28 @@ apology_text=[
     "想起我们曾经有过的甜蜜，所有的气都烟消云散了。这就是真正的亲密无间，任何东西都无法割断——我们彼此的爱。"
 ]
 
-NICKNAME_LEN=len(nickname)
-APOLOGY=len(apology)
-APOLOGY_TEXT=len(apology_text)
+NICKNAME_LEN = len(nickname)
+APOLOGY = len(apology)
+APOLOGY_TEXT = len(apology_text)
+
 
 def main():
-    bullshit=str()
-    bullshit+=nickname[random.randint(0,NICKNAME_LEN-1)]
-    bullshit+=apology[random.randint(0,APOLOGY-1)]
-    while(len(bullshit)<=1000):
-        randNum=random.randint(0,15)
-        if randNum%4==0:
-            bullshit+=nickname[random.randint(0,NICKNAME_LEN-1)]
-            bullshit+=apology[random.randint(0,APOLOGY-1)]
+    bullshit = str()
+    bullshit += nickname[random.randint(0, NICKNAME_LEN - 1)]
+    bullshit += apology[random.randint(0, APOLOGY - 1)]
+    while (len(bullshit) <= 1000):
+        randNum = random.randint(0, 15)
+        if randNum % 4 == 0:
+            bullshit += nickname[random.randint(0, NICKNAME_LEN - 1)]
+            bullshit += apology[random.randint(0, APOLOGY - 1)]
         else:
-            bullshit+=apology_text[random.randint(0,APOLOGY_TEXT-1)]
-    bullshit=bullshit.replace("name",name)
-    bullshit=bullshit.replace("event",event)
-    
-    bullshit='\n'.join([bullshit[i:i+50] for i in range(0,len(bullshit),50)])
-    print("关于{}致最亲爱的{}的道歉信".format(event,name))
+            bullshit += apology_text[random.randint(0, APOLOGY_TEXT - 1)]
+    bullshit = bullshit.replace("name", name)
+    bullshit = bullshit.replace("event", event)
+
+    bullshit = '\n'.join([bullshit[i:i + 50] for i in range(0, len(bullshit), 50)])
+    print("关于{}致最亲爱的{}的道歉信".format(event, name))
     print(bullshit)
+
 
 main()
